@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JCP General Business</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add any extra styling you need */
+    #successMessage {
+      display: none;
+      color: green;
+      background-color: #e6ffe6;
+      border: 1px solid #66cc66;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .phone-section {
+      margin-top: 30px;
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-left: 5px solid #6A5ACD;
+      max-width: 500px;
+    }
+
+    .phone-section h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>JCP General Business</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home">
+    <img src="images/top.jpg" alt="Land Clearing and Site Preparation" class="hero-img">
+    <div class="container">
+      <h2>Transforming Properties, One Project at a Time</h2>
+      <p>From land clearing to rock filling, we offer comprehensive solutions for your property needs.</p>
+      <a href="#contact" class="cta-button">Get a Free Quote</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="service-list">
+        <div class="service">
+          <img src="images/land clearing.jpg" alt="Land Clearing">
+          <h3>Land Clearing</h3>
+          <p>We provide professional land clearing services to prepare your site for construction or landscaping.</p>
+        </div>
+        <div class="service">
+          <img src="images/site prep.jpg" alt="Site Preparation">
+          <h3>Site Preparation</h3>
+          <p>Ensure your land is properly prepped with our expert site preparation services for building and other projects.</p>
+        </div>
+        <div class="service">
+          <img src="images/rock filling.jpg" alt="Rock Filling">
+          <h3>Rock Filling</h3>
+          <p>We offer top-quality rock filling solutions to improve the stability and drainage of your property.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>At JCP General Business, we pride ourselves on delivering high-quality land clearing, site preparation, and rock filling services. With years of experience and a dedicated team, we ensure each project is completed with precision, professionalism, and attention to detail.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Ready to get started on your next project? Contact us today for a free quote!</p>
+
+      <!-- Contact Form -->
+      <form action="https://formspree.io/f/mdkeplgr" method="POST" id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+
+      <!-- Success Message -->
+      <div id="successMessage">
+        <strong>Thank You!</strong><br>
+        Your email was sent and we will reach out soon.
+      </div>
+
+      <!-- Phone Numbers Section -->
+      <div class="phone-section">
+        <h3>Call Us / Llámanos</h3>
+        <p><strong>English:</strong> (239) 234-9918</p>
+        <p><strong>Español:</strong> (239) 250-9480</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 JCP General Business. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript for form interaction -->
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const response = await fetch("https://formspree.io/f/mdkeplgr", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        successMsg.style.display = "block";
+      } else {
+        alert("Oops! Something went wrong.");
+      }
+    });
+  </script>
+</body>
+</html>

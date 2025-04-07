@@ -1,0 +1,40 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+const app = express();
+
+app.use(express.static('public')); // Serve your HTML form from "public" folder
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'jcpbusiness64@gmail.com',
+      pass: 'YOUR_APP_PASSWORD' // Replace with the real Gmail app password
+    }
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'jcpbusiness64@gmail.com',
+    subject: 'New Contact Form Submission',
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send('Error while sending email.');
+    }
+    res.send('Email sent successfully!');
+  });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
